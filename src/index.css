@@ -1,0 +1,68 @@
+:root {
+  /* --- الوضع الداكن (Default) --- */
+  --bg: #111122;
+  --card-bg: #1a1a2e;
+  --text-main: #ffffff;
+  --text-h: #ffffff;
+  --text-secondary: #8b8baf;
+  --accent: #5c59f2;
+  --accent-bg: rgba(92, 89, 242, 0.1);
+  --accent-border: rgba(92, 89, 242, 0.5);
+  --border: #2d2d44;
+  --input-bg: #252545;
+  --shadow: rgba(0, 0, 0, 0.3) 0 10px 15px -3px;
+  --sidebar-width: 260px;
+  --transition: all 0.3s ease;
+}
+
+/* --- وضع اللايت مود (أبيض وموف) --- */
+[data-theme='light'] {
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-main: #1a1a2e;
+  --text-h: #000000; /* الكلام هيقلب أسود صريح */
+  --text-secondary: #6b6375;
+  --accent: #aa3bff; /* الموف اللي طلبته */
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --border: #e5e4e7;
+  --input-bg: #f0f0f5;
+  --shadow: rgba(0, 0, 0, 0.05) 0 10px 15px -3px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg); /* ده هيضمن إن الخلفية تقلب أبيض */
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* إلغاء كل قيود الـ root القديمة */
+#root {
+  width: 100%; /* مفيش 1126px تاني! */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border: none; /* شيلنا الخطوط اللي في الجناب */
+}
+
+h1, h2, h3 {
+  color: var(--text-h);
+  margin-top: 0;
+}
+
+/* ميديا كويري للموبايل */
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 0px; /* في الموبايل السايد بار بيتحول */
+  }
+}

@@ -1,0 +1,78 @@
+.container {
+  padding: clamp(15px, 4vw, 40px);
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--text-main);
+}
+
+.title {
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: var(--text-h);
+}
+
+.section {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: clamp(20px, 3vw, 30px);
+  margin-bottom: 25px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.info h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  color: var(--text-h);
+}
+
+.info p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* زرار التبديل (Theme Toggle) */
+.themeToggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: var(--transition);
+  background: var(--accent);
+  color: white;
+}
+
+.themeToggle:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--accent-border);
+}
+
+.icon {
+  font-size: 20px;
+}
+
+/* ميديا كويري للموبايل */
+@media (max-width: 480px) {
+  .section {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .themeToggle {
+    width: 100%;
+    justify-content: center;
+  }
+}

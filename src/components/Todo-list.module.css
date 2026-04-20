@@ -1,0 +1,154 @@
+.container {
+    width: 95%;
+    max-width: 600px;
+    margin: clamp(20px, 5vh, 50px) auto;
+    padding: clamp(20px, 4vw, 40px);
+    background-color: var(--card-bg); /* هيقلب أبيض صريح */
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.title {
+    text-align: center;
+    color: var(--accent); /* موف في اللايت مود */
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    margin-bottom: 30px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+/* قسم الإدخال */
+.inputSection {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.inputButton {
+    flex: 1;
+    font-size: 16px;
+    padding: 14px 22px;
+    border-radius: 16px; /* خليناه مربع شوية عشان يليق بالكالندر */
+    color: var(--text-main);
+    background: var(--input-bg) !important; /* اللون ده هو اللي هيقلب أبيض/رمادي فاتح */
+    border: 1px solid var(--border);
+    transition: var(--transition);
+    outline: none;
+}
+
+.inputButton:focus {
+    border-color: var(--accent);
+    background: var(--card-bg) !important;
+    box-shadow: 0 0 0 4px var(--accent-bg);
+}
+
+.addButton {
+    font-size: 15px;
+    padding: 0 28px;
+    border-radius: 16px;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.addButton:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--accent-border);
+}
+
+/* القائمة */
+.listSection {
+    display: grid;
+    gap: 14px;
+}
+
+.taskItem {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--input-bg) !important; /* ده اللي كان كحلي في الصورة */
+    border-radius: 18px;
+    transition: var(--transition);
+    border: 1px solid var(--border);
+}
+
+.taskItem:hover {
+    background: var(--card-bg) !important;
+    border-color: var(--accent);
+    transform: translateX(4px);
+}
+
+.taskContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.taskContent label {
+    flex: 1;
+    color: var(--text-main);
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* الـ Checkbox الدائري */
+.checkbox {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--accent);
+    border-radius: 8px; /* خليناه مربع بحواف دائرية عشان يبقى أشيك */
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.checkbox:checked {
+    background: var(--accent);
+}
+
+.checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* زر الحذف - شيلنا الـ border عشان يبقى أنضف */
+.deleteBtn {
+    all: unset; /* تصفير الستايل القديم */
+    padding: 8px 16px;
+    border-radius: 12px;
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #ef4444 !important;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.deleteBtn:hover {
+    background: #ef4444 !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
+}
+
+@media (max-width: 480px) {
+    .inputSection { flex-direction: column; }
+    .addButton { padding: 14px; }
+}

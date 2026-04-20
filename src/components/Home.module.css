@@ -1,0 +1,109 @@
+.homeWrapper {
+  padding: clamp(15px, 4vw, 30px);
+  background-color: var(--bg); /* يضمن إن الخلفية تقلب أبيض */
+  min-height: 100%;
+}
+
+.welcomeHeader {
+  margin-bottom: 40px;
+}
+
+.welcomeHeader h1 {
+  font-size: clamp(24px, 5vw, 32px);
+  margin-bottom: 10px;
+  color: var(--text-h); /* أسود في اللايت، أبيض في الدارك */
+}
+
+.welcomeHeader p {
+  color: var(--text-secondary); /* بنفسجي خافت أو رمادي */
+}
+
+/* تصميم الجريد - Responsive وجاهز */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* تصميم الكارت - السحر هنا */
+.card {
+  background-color: var(--card-bg); /* أبيض في اللايت، كحلي في الدارك */
+  padding: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid var(--border); /* حواف خفيفة تبان في اللايت مود */
+  box-shadow: var(--shadow);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  background-color: var(--card-bg); 
+  border-color: var(--accent); /* يقلب موف في الـ Hover */
+  box-shadow: 0 15px 35px var(--accent-border);
+}
+
+.iconWrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+  background-color: var(--accent-bg); /* خلفية خفيفة للأيقونة */
+  color: var(--accent); /* لون الأيقونة موف */
+}
+
+.cardInfo h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: var(--text-h);
+}
+
+.cardInfo p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cardArrow {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 20px;
+  color: var(--accent);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.card:hover .cardArrow {
+  opacity: 1;
+  right: 25px;
+}
+
+/* ميديا كويري عشان الموبايل */
+@media (max-width: 480px) {
+  .gridContainer {
+    grid-template-columns: 1fr; /* كارت واحد في الصف */
+  }
+  .card {
+    padding: 20px;
+  }
+}
+.cardInfo h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  /* التعديل هنا: خليه هيدر غامق */
+  color: var(--text-h) !important; 
+}
+
+.cardInfo p {
+  /* التعديل هنا: خليه بنفسجي غامق أو رمادي تقيل */
+  color: var(--text-secondary) !important;
+  font-size: 14px;
+}

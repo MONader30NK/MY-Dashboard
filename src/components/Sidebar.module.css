@@ -1,0 +1,256 @@
+.sidebar {
+  width: var(--sidebar-width); /* يسحب الـ 260px */
+  height: 100vh;
+  background: var(--card-bg); /* يقلب أبيض في اللايت */
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-right: 1px solid var(--border);
+  transition: var(--transition);
+  z-index: 1000;
+}
+
+.profileSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.profileImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--accent); /* يقلب موف في اللايت */
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: var(--text-h);
+}
+
+.userEmail {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.linkItem {
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.linkItem:hover, .activeLink {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+/* زرار الخروج المفضل عندك */
+.logoutBtn {
+  background: rgba(255, 77, 77, 0.1);
+  color: #ff4d4d;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: auto; /* يرجعه تحت خالص */
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.logoutBtn:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+/* --- تحويل الـ Sidebar لشريط سفلي في الموبايل (Responsive) --- */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: 70px; /* ارتفاع صغير تحت */
+    flex-direction: row; /* العناصر جنب بعض */
+    top: auto;
+    bottom: 0; /* يلزق تحت */
+    padding: 0 15px;
+    border-right: none;
+    border-top: 1px solid var(--border);
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  /* إخفاء البروفايل والايميل في شريط الموبايل لتوفير مساحة */
+  .profileSection, .userEmail, .userName, .logoutBtn span {
+    display: none;
+  }
+  
+  .profileImg {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 0;
+  }
+
+  .navLinks {
+    flex-direction: row; /* اللينكات جنب بعض */
+    gap: 20px;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .linkItem {
+    padding: 10px;
+    flex-direction: column; /* الأيقونة فوق الكلمة (لو فيه كلمات) */
+    font-size: 10px;
+  }
+
+  .logoutBtn {
+    margin-top: 0;
+    background: transparent;
+    padding: 10px;
+  }
+}
+.profileSection {
+  background: var(--input-bg); /* هيقلب رمادي فاتح جداً في اللايت مود */
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+
+.userName {
+  color: var(--text-h); /* عشان الاسم يبان أسود في اللايت مود */
+}
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed; /* خليه يطير فوق المحتوى */
+    top: 0;
+    right: -100%; /* استخبى ناحية اليمين بره الشاشة */
+    width: 250px; /* عرض رفيع وأنيق */
+    height: 100vh;
+    z-index: 2000;
+    padding: 20px;
+    transition: right 0.3s ease-in-out; /* حركة ناعمة */
+    display: flex; /* عشان يرجع يظهر المحتوى جواه */
+    flex-direction: column;
+  }
+
+  /* الكلاس اللي هيضيفه الريأكت لما تفتح المنيو */
+  :global(.sidebarActive) {
+    right: 0 !important;
+  }
+}
+/* --- إخفاء الزرار والطبقة الشفافة في شاشة الكمبيوتر --- */
+.mobileMenuBtn {
+  display: none;
+}
+.overlay {
+  display: none;
+}
+
+/* تنسيق اللينكات والأيقونات (عشان تظهر جنب بعض بشكل حلو) */
+.linkItem, .activeLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  /* حط هنا باقي تنسيقات الألوان والبادينج بتاعتك */
+}
+
+/* --- شغل الموبايل (Responsive) --- */
+@media (max-width: 768px) {
+  /* 1. إظهار زرار الموبايل وتثبيته في مكان ثابت */
+  .mobileMenuBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 10px;
+    right: 15px; /* الزرار هيكون فوق على اليمين */
+    z-index: 2500; /* عشان يفضل فوق أي حاجة */
+    background-color: var(--accent); /* لون الزرار */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  /* 2. السايد بار هيكون مستخبي بره الشاشة يمين */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* مستخبي يمين */
+    left: auto;
+    width: 250px;
+    height: 100vh;
+    z-index: 2000;
+    transition: right 0.4s ease-in-out;
+  }
+
+  /* الكلاس اللي بيضاف لما تدوس على الزرار */
+  .sidebarOpen {
+    right: 0 !important; /* يظهر من اليمين */
+  }
+
+  /* 3. الطبقة الشفافة اللي ورا القائمة */
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 1500;
+  }
+}
+/* تنسيقات اللايت مود للسايد بار */
+.lightMode {
+  background-color: #ffffff !important;
+  border-right: 1px solid #eeeeee;
+}
+
+.lightMode .userName {
+  color: #1a1a2e !important;
+}
+
+.lightMode .linkItem {
+  color: #555555 !important;
+}
+
+.lightMode .linkItem:hover {
+  background-color: rgba(92, 89, 242, 0.1);
+  color: #5c59f2 !important;
+}
+
+/* في حالة الموبايل */
+@media (max-width: 768px) {
+  .sidebar.lightMode {
+    background-color: #ffffff !important;
+    box-shadow: 10px 0 20px rgba(0, 0, 0, 0.05) !important;
+  }
+}

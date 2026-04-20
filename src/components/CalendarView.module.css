@@ -1,0 +1,421 @@
+.calendarWrapper {
+  padding: 20px;
+  background-color: transparent !important; /* عشان ياخد لون الـ Dashboard الأبيض */
+  min-height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.monthSelect {
+  background: transparent;
+  border: none;
+  color: var(--text-h); /* هيقلب أسود في اللايت */
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: bold;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+}
+
+.monthSelect option {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+}
+
+.year {
+  font-size: clamp(20px, 4vw, 28px);
+  color: var(--text-secondary);
+  margin-left: 10px;
+}
+
+.navBtn {
+  background-color: var(--accent); /* موف في اللايت */
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.navBtn:hover {
+  background-color: var(--accent-hover);
+}
+
+.weekDay {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.dayBox {
+  background-color: var(--input-bg); /* رمادي فاتح جداً في اللايت */
+  aspect-ratio: 1.1 / 1;
+  border-radius: 18px;
+  padding: 15px;
+  position: relative;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid var(--border);
+}
+
+.dayBox:hover {
+  transform: translateY(-3px);
+  background-color: var(--card-bg);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.dayNumber {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+/* اليوم الملون (البمبي هيفضل بمبي بس الكلام جواه يوضح) */
+.activeDay {
+  background-color: #ff8fb1 !important;
+  border: none;
+}
+
+.activeDay .dayNumber {
+  color: #1a1a2e !important;
+}
+
+/* المهام (Dots) */
+.taskDot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* --- الـ Side Tab (القائمة الجانبية) --- */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* تغميق خفيف خلف التاب */
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+}
+
+.sideTab {
+  width: min(400px, 90%);
+  height: 100%;
+  background: var(--card-bg); /* تقلب أبيض في اللايت */
+  padding: 30px;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+  animation: slideIn 0.4s ease-out;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-main);
+}
+
+.modalHeader {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+.modalHeader h2 {
+    color: var(--text-h);
+}
+
+.inputArea input {
+  flex: 1;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 8px;
+  color: var(--text-main);
+  outline: none;
+}
+
+.inputArea input:focus {
+    border-color: var(--accent);
+}
+
+.taskItem {
+  background: var(--input-bg);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.emptyBox {
+  aspect-ratio: 1.1 / 1;
+  opacity: 0.3;
+}
+/* زرار الإضافة (+) اللي جوه الـ Side Tab */
+.inputArea button {
+  background: var(--accent); /* هيفضل موف/بنفسجي */
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* عشان ميتعصرش لو الكلام طول */
+  box-shadow: 0 4px 10px var(--accent-border);
+}
+
+.inputArea button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--accent-border);
+}
+
+/* زرار الحذف (الـ Trash/Delete) */
+.deleteBtn {
+  background: rgba(239, 68, 68, 0.1); /* خلفية حمراء شفافة شيك */
+  color: #ef4444; /* لون أحمر صريح */
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+  transform: scale(1.05);
+}
+
+/* تعديل بسيط للـ Input اللي جنب زرار الـ + */
+.inputArea input {
+  flex: 1;
+  background: var(--input-bg);
+  border: 2px solid var(--border);
+  padding: 12px 15px;
+  border-radius: 12px;
+  color: var(--text-main);
+  outline: none;
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+.inputArea input:focus {
+  border-color: var(--accent);
+  background: var(--card-bg);
+}
+/* المنطقة اللي فيها الـ Input وزرار الـ + */
+.inputArea {
+  display: flex;
+  align-items: center; /* يخليهم على خط واحد بالظبط */
+  gap: 10px;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.inputArea input {
+  flex: 1; /* ياخد كل المساحة المتاحة */
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  padding: 12px 15px;
+  border-radius: 12px;
+  color: var(--text-main);
+  outline: none;
+  font-size: 15px;
+  min-width: 0; /* يمنع الـ input إنه يزق الزرار لتحت */
+}
+
+/* زرار الزائد + */
+.inputArea button {
+  width: 45px; /* عرض ثابت */
+  height: 45px; /* طول ثابت عشان يفضل مربع */
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  flex-shrink: 0; /* يمنع الزرار إنه يصغر أو ينزل تحت */
+  transition: var(--transition);
+}
+
+.inputArea button:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+/* زرار الحذف (تأكد إن الكلاس ده مستخدم في الـ JSX) */
+.deleteBtn {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  padding: 6px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  margin-left: auto; /* يزقه لآخر اليمين في الكارت */
+}
+
+.deleteBtn:hover {
+  background: #ef4444 !important;
+  color: white !important;
+}
+
+/* شكل الـ Task Item عشان الزرار يبان جواه صح */
+.taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--input-bg);
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+}
+/* الحاوية الأساسية للتاسك */
+.taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--input-bg);
+  padding: 12px 16px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.taskItem:hover {
+  border-color: var(--accent-border);
+  background: var(--card-bg);
+}
+
+/* النص اللي جوه التاسك */
+.taskItem span {
+  flex: 1;
+  color: var(--text-main);
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+/* زرار الديليت - Force Style */
+.taskItem button, 
+.deleteBtn {
+  all: unset; /* بيمسح أي ستايل قديم جاي من المتصفح أو ملف تاني */
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+  padding: 6px 14px !important;
+  border-radius: 8px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  transition: all 0.2s ease !important;
+  text-align: center !important;
+}
+
+.taskItem button:hover, 
+.deleteBtn:hover {
+  background: #ef4444 !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3) !important;
+  transform: translateY(-1px);
+}
+/* --- التعديلات دي للموبايل فقط --- */
+@media (max-width: 768px) {
+  .calendarWrapper {
+    padding: 10px; /* تقليل الهوامش */
+    width: 100%;
+    overflow-x: hidden; /* نمنع السكرول بالعرض نهائياً */
+  }
+
+  /* 1. تظبيط الهيدر عشان الأزرار متدخلش في الكلام */
+  .header {
+    flex-direction: row; /* نخليهم في صف واحد */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 5px;
+  }
+
+  .monthYear {
+    font-size: 1.2rem !important; /* تصغير الخط شوية */
+  }
+
+  /* 2. أهم جزء: شبكة الأيام */
+  .daysGrid {
+    display: grid;
+    /* نستخدم 7 أعمدة متساوية بالظبط */
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 5px !important; /* تقليل المسافات جداً */
+    width: 100%;
+  }
+
+  /* 3. المربعات: نخلي حجمها يتناسب مع عرض الشاشة */
+  .dayBox, .emptyBox {
+    aspect-ratio: 1 / 1; /* يفضل مربع مهما كان العرض */
+    width: 100% !important; /* ياخد مساحة العمود */
+    min-width: 0; /* نلغي أي حد أدنى قديم */
+    height: auto !important;
+    padding: 5px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px; /* تصغير رقم اليوم */
+    border-radius: 8px; /* تنعيم الحواف */
+  }
+
+  /* 4. النقطة (المهام) */
+  .taskDot {
+    width: 4px;
+    height: 4px;
+    bottom: 4px;
+  }
+
+  /* 5. الـ Modal (التاب الجانبية) في الموبايل */
+  .sideTab {
+    width: 90% !important; /* تاخد عرض الشاشة كله تقريباً */
+    right: 5%;
+    left: 5%;
+    bottom: 10%;
+    height: 70vh; /* نخليها تظهر كأنها Card طالع من تحت */
+    border-radius: 20px 20px 0 0;
+  }
+}

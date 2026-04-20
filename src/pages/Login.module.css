@@ -1,0 +1,139 @@
+/* Login.module.css */
+
+.authContainer {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* خلفية متدرجة تليق بالـ Dark Mode */
+  background: radial-gradient(circle at top left, #1a1a2e 0%, #131326 100%);
+  margin: 0;
+  padding: 0;
+}
+
+.authCard {
+  background-color: #252545;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.authCard h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.authCard form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.authCard input {
+  background-color: #1a1a2e;
+  border: 1px solid #3f3da1;
+  padding: 15px;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.authCard input:focus {
+  border-color: #ff8fb1; /* اللون البمبي اللي استخدمناه في الكالندر */
+}
+
+.authBtn {
+  background: linear-gradient(135deg, #5c59f2 0%, #3f3da1 100%);
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 10px;
+}
+
+.authBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(92, 89, 242, 0.4);
+}
+
+.authBtn:active {
+  transform: translateY(0);
+}
+
+.authCard p {
+  margin-top: 25px;
+  color: #8b8baf;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.authCard p:hover {
+  color: #ff8fb1;
+  text-decoration: underline;
+}
+
+/* إضافة لمسة جمالية (اختياري): انيميشن بسيط عند ظهور الكارت */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.authCard {
+  animation: fadeInUp 0.6s ease-out;
+}
+/* Login.module.css */
+
+.googleBtn {
+  background-color: #ffffff; /* خلفية بيضاء عشان لوجو جوجل ينطق */
+  color: #1a1a2e; /* كتابة غامقة */
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* مسافة بين اللوجو والكلام */
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.googleBtn:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-1px);
+}
+
+.googleBtn img {
+  width: 20px;
+  height: 20px;
+}
+
+.toggleText {
+  margin-top: 25px;
+  color: #8b8baf;
+  font-size: 14px;
+  cursor: pointer;
+}

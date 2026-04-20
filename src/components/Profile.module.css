@@ -1,0 +1,179 @@
+.profileContainer {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(10px, 3vw, 30px);
+}
+
+.profileCard {
+    width: min(100%, 550px);
+    background-color: var(--card-bg);
+    padding: clamp(20px, 5vw, 50px);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+/* قسم الصورة */
+.imageSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.avatarWrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.largeAvatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent);
+    box-shadow: 0 4px 15px rgba(170, 59, 255, 0.2);
+}
+
+/* ستايل الـ Initial (أول حرف) */
+.initialAvatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+    font-weight: 800;
+    border: 4px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+/* زرار الرفع الأنيق */
+.customUploadBtn {
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    border: 2px solid var(--border);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.customUploadBtn:hover {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--accent-border);
+}
+
+.uploadIcon {
+    font-size: 18px;
+}
+
+.sizeHint {
+    font-size: 11px;
+    color: var(--text-main);
+    opacity: 0.6;
+    margin-top: 8px;
+}
+
+/* باقي الفورم */
+.form {
+    display: grid;
+    gap: 20px;
+}
+
+.inputGroup {
+    display: grid;
+    gap: 8px;
+}
+
+.inputGroup label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.inputGroup input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+.inputGroup input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.disabledInput {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.saveBtn {
+    margin-top: 15px;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 16px;
+}
+
+.saveBtn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--accent-border);
+}
+
+.saveBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+/* ستايل الـ Initial (أول حرف) - الافتراضي للدارك مود */
+.initialAvatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+    font-weight: 800;
+    border: 4px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+/* التعديل الخاص باللايت مود فقط */
+:global([data-theme='light']) .initialAvatar {
+    background: var(--accent); /* خلفية بنفسجي سادة زي السايد بار */
+    color: #ffffff;           /* حرف لونه أبيض */
+    border-color: #ffffff;     /* إطار أبيض خفيف عشان ينطق */
+}

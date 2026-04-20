@@ -1,0 +1,892 @@
+.container {
+  display: flex;
+  width: 100vw; /* 100 بدل 99.9 عشان الهزه */
+  height: 100vh;
+  background-color: var(--bg); /* يسحب من index.css */
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.mainContent {
+  flex: 1;
+  padding: 40px;
+  /* التعديل هنا: خليه يقرأ من المتغيرات */
+  background-color: var(--bg); 
+  color: var(--text-main);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease; /* عشان النقلة تكون ناعمة */
+}
+
+/* لو عندك ديف داخلي للهوم تأكد إنه مش واخد خلفية سوداء */
+.homeWrapper {
+    background-color: transparent !important;
+}
+
+.sidebar {
+  width: var(--sidebar-width); /* 260px من الدستور */
+  background-color: var(--card-bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px var(--shadow);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.mainContent {
+  flex: 1;
+  padding: clamp(15px, 4vw, 40px); /* بادينج مرن يصغر في الموبايل */
+  background-color: var(--bg);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.topHeader {
+  width: 100%;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+
+.topHeader h1 {
+    color: var(--text-h); /* لون العناوين الغامق في اللايت مود */
+}
+
+.sectionTitle {
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 20px 0 10px 10px;
+  font-weight: bold;
+}
+
+/* التعديل على اللينكات عشان تقلب موف في اللايت مود */
+.link {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: transparent;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  background-color: var(--accent-bg); /* لون خفيف من الموف */
+  color: var(--accent);
+}
+
+.activeLink {
+  composes: link; /* ياخد ستايل اللينك العادي */
+  background-color: var(--accent) !important; /* الموف او البنفسجي حسب الثيم */
+  color: #fff !important; /* دايما ابيض في الحالة النشطة */
+  box-shadow: 0 4px 15px var(--accent-border);
+}
+
+.profileSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: var(--input-bg);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.avatar, .initialsAvatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  object-fit: cover;
+}
+
+.initialsAvatar {
+    background-color: var(--accent);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* --- تعديلات الموبايل (Responsive) --- */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* السايد بار فوق والمحتوى تحت */
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    flex-direction: row; /* يخلي اللوجو والبروفايل جنب بعض */
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navMenu, .sectionTitle, .logoutBtn {
+    display: none; /* نخفي القائمة التقليدية في الموبايل ونعتمد على Bottom Nav او زرار */
+  }
+
+  .mainContent {
+    padding: 20px;
+    height: calc(100vh - 70px); /* باقي مساحة الشاشة */
+  }
+}
+.logoutBtn {
+  margin-top: auto; /* ده السحر اللي بيرجعه لآخر السايد بار تحت */
+  color: #ff5c5c; /* اللون الأحمر المفضل عندك */
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.logoutBtn:hover {
+  background-color: rgba(255, 92, 92, 0.1);
+  border-radius: 12px;
+}
+
+/* تعديل بسيط للأيقونة جوا الزرار عشان تكون بعيدة عن الكلمة */
+.logoutBtn .icon {
+  margin-right: 15px;
+  font-size: 20px;
+}
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: column; /* يخليهم تحت بعض في الموبايل لو عايزهم يظهروا */
+    gap: 10px;
+  }
+
+  .logoutBtn {
+    margin-top: 10px; /* في الموبايل مش محتاج auto لأن المساحة اتغيرت */
+    justify-content: center; /* يخلي الزرار في النص في الموبايل */
+  }
+  
+}
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* --- أي حاجة تخص الموبايل تبدأ بمخفي --- */
+.openMenuBtn, .closeMenuBtn, .overlay {
+  display: none;
+}
+
+/* --- تعديلات الموبايل فقط (768px وأقل) --- */
+@media (max-width: 768px) {
+  /* 1. تصغير سمك الهيدر والمساحة الفاضية */
+  .topHeader {
+    height: 50px !important; /* رفيع جداً */
+    padding: 0 10px !important;
+    margin-bottom: 5px !important;
+  }
+  .topHeader h1 { font-size: 18px !important; }
+  .topSubText { display: none; } /* نخفي الجملة الثانية لتوفير مساحة */
+
+  /* 2. إظهار زرار الفتح في الهيدر */
+  .openMenuBtn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--accent);
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  /* 3. السايد بار يطير لليمين ويختفي */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* مستخبي يمين */
+    left: auto;
+    width: 260px;
+    height: 100vh;
+    z-index: 2000;
+    transition: right 0.3s ease-in-out;
+    display: flex !important; /* نضمن إنه يظهر لما ياخد كلاس Active */
+  }
+
+  .sidebarActive {
+    right: 0 !important; /* يظهر من اليمين */
+  }
+
+  /* 4. زرار الإغلاق جوه السايد بار */
+  .closeMenuBtn {
+    display: block;
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--accent);
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  /* 5. الطبقة الشفافة */
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1500;
+  }
+}
+/* --- إعدادات افتراضية للكمبيوتر --- */
+.openMenuBtn, .closeMenuBtn, .overlay {
+  display: none;
+}
+
+/* --- تعديلات الموبايل فقط (أقل من 768px) --- */
+@media (max-width: 768px) {
+  
+  /* 1. إخفاء الترحيب والاسم في الموبايل فقط */
+  .headerInfo {
+    display: none !important;
+  }
+
+  /* 2. تصغير الهيدر تماماً */
+  .topHeader {
+    height: 45px !important;
+    padding: 0 10px !important;
+    margin-bottom: 5px !important;
+    justify-content: flex-start !important;
+  }
+
+  .openMenuBtn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--accent);
+    cursor: pointer;
+  }
+
+  /* 3. السايد بار (القائمة الجانبية) */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* يبدأ من اليمين وهو مستخبي */
+    left: auto;
+    width: 280px; /* نفس عرض الكمبيوتر عشان المحتوى ميبقاش فاضي */
+    height: 100vh;
+    background-color: var(--card-bg); /* اتأكد إن فيه لون خلفية عشان ميظهرش فاضي */
+    z-index: 2000;
+    display: flex !important; /* نضمن إن العناصر تظهر */
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    overflow-y: auto; /* لو اللينكات كتير يقدر يعمل سكرول جوه المنيو */
+  }
+
+  .sidebarActive {
+    right: 0 !important; /* يظهر لما نضغط الزرار */
+  }
+
+  /* نضمن إن قسم البروفايل واللينكات ظاهرين بنفس ستايل الكمبيوتر */
+  .profileSection, .navMenu {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* 4. زرار الإغلاق */
+  .closeMenuBtn {
+    display: block;
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--accent);
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  /* 5. الطبقة الشفافة */
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(2px);
+    z-index: 1500;
+  }
+}
+/* --- أي تعديل هنا داخل الـ Media Query للموبايل فقط --- */
+@media (max-width: 768px) {
+  
+  /* 1. إخفاء الترحيب تماماً */
+  .headerInfo {
+    display: none !important;
+  }
+
+  /* 2. السايد بار: هنخليه يبدأ المحتوى من فوق (flex-start) */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: #1a1a2e; /* نفس لون الخلفية في الصورة */
+    z-index: 2000;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-start; /* يرفع المكونات لأعلى السايد بار */
+    padding: 20px;
+    transition: right 0.3s ease-in-out;
+    overflow-y: auto;
+  }
+
+  /* 3. زرار القفل: نخليه في الزاوية فوق */
+  .closeMenuBtn {
+    display: block;
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #5c59f2;
+    cursor: pointer;
+    margin-bottom: 10px; /* مسافة بسيطة تحت الزرار */
+  }
+
+  /* 4. قسم البروفايل: نشيل المسافات الكبيرة ونخليه فوق */
+  .profileSection {
+    margin-bottom: 30px !important; /* مسافة بين البروفايل واللينكات */
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* خط بسيط يفصل البروفايل */
+    width: 100%;
+  }
+
+  /* 5. قائمة اللينكات: نرفعها ونظبط شكلها */
+  .navMenu {
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px !important; /* تقليل المسافات بين اللينكات لجعلها مهندلة */
+    width: 100%;
+  }
+
+  /* ضبط شكل اللينكات في الموبايل لتكون Full Width */
+  .link, .activeLink {
+    width: 100%;
+    padding: 12px 15px !important;
+    justify-content: flex-start !important; /* الأيقونة والكلام يبدأوا من الجنب */
+    border-radius: 10px;
+    font-size: 15px;
+  }
+
+  /* الطبقة الشفافة */
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1500;
+  }
+}
+@media (max-width: 768px) {
+  /* 1. تقليص عرض السايد بار عشان ميبقاش واخد الشاشة كلها */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; 
+    width: 240px; /* صغرنا العرض شوية */
+    height: 100vh;
+    background-color: #1a1a2e;
+    z-index: 2000;
+    padding: 15px; /* قللنا البادينج الداخلي */
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -10px 0 20px rgba(0,0,0,0.5);
+  }
+
+  /* 2. زرار القفل: نخليه صغير وشيك فوق */
+  .closeMenuBtn {
+    display: block;
+    align-self: flex-end;
+    font-size: 24px;
+    color: #5c59f2;
+    margin-bottom: 5px;
+  }
+
+  /* 3. "هندلة" قسم البروفايل (أهم جزء في الصورة) */
+  .profileSection {
+    background: rgba(255, 255, 255, 0.05); /* خلفية خفيفة جداً بدل الكارت التقيل */
+    border-radius: 12px;
+    padding: 10px; /* تقليل البادينج */
+    margin-bottom: 20px !important;
+    display: flex;
+    flex-direction: row !important; /* خليهم جنب بعض بدل تحت بعض لتوفير مساحة */
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* تصغير حجم الصورة في الموبايل */
+  .avatarWrapper {
+    width: 45px !important;
+    height: 45px !important;
+  }
+
+  .avatar, .initialsAvatar {
+    font-size: 16px !important;
+  }
+
+  /* ضبط النصوص بجانب الصورة */
+  .userInfo {
+    text-align: left !important;
+  }
+
+  .userName {
+    font-size: 14px !important;
+    margin-bottom: 2px;
+  }
+
+  .userStatus {
+    font-size: 11px !important;
+  }
+
+  /* 4. رص اللينكات بشكل مدمج */
+  .navMenu {
+    gap: 5px !important; /* تقليل المسافة بين اللينكات */
+  }
+
+  .link, .activeLink {
+    padding: 10px 12px !important; /* تقليل حجم اللينك */
+    font-size: 14px !important;
+    border-radius: 8px;
+  }
+
+  .sectionTitle {
+    font-size: 11px !important;
+    margin: 10px 0 5px 5px !important;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  /* 5. الهيدر الخارجي (المنطقة الفاضية اللي فوق) */
+  .topHeader {
+    height: 40px !important; /* أقل ارتفاع ممكن */
+    margin-bottom: 0 !important;
+    padding: 5px 15px !important;
+  }
+}
+/* إخفاء العنوان في الكمبيوتر */
+.brandTitle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* 1. إظهار العنوان في الموبايل فقط */
+  .brandTitle {
+    display: block;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-left: auto; /* زق الكلمة أقصى اليمين */
+    /* اللون الأبيض للدارك مود */
+    color: #ffffff; 
+    font-family: 'Arial Black', sans-serif;
+  }
+
+  /* 2. تغيير اللون بنفسجي لو الجهاز في اللايت مود */
+  /* ملاحظة: افترضنا إنك بتضيف كلاس 'light' للـ container */
+  .container.light .brandTitle {
+    color: #5c59f2;
+  }
+
+  /* لو بتستخدم متغيرات CSS جاهزة، استخدم دي أضمن: */
+  /* color: var(--brand-color, #ffffff); */
+
+  .topHeader {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* البداية للزرار */
+    height: 50px !important;
+    padding: 0 15px !important;
+  }
+
+  .headerInfo {
+    display: none !important; /* إخفاء الترحيب في الموبايل */
+  }
+
+  /* تصغير وتنسيق السايد بار كما اتفقنا */
+  .sidebar {
+    width: 250px;
+    justify-content: flex-start;
+    padding-top: 10px;
+  }
+
+  .profileSection {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 15px !important;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  .avatarWrapper {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .userName {
+    font-size: 14px !important;
+  }
+}
+@media (max-width: 768px) {
+  .brandTitle {
+    display: block;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-left: auto;
+    color: #ffffff;
+
+    /* السطر ده هو اللي بيغير الخط */
+    font-family: 'Poppins', sans-serif; 
+
+    /* اختياري: خليه كابيتال عشان يبان كأنه لوجو */
+    text-transform: uppercase;
+  }
+}
+@media (max-width: 768px) {
+  .brandTitle {
+    display: block;
+    /* استخدام الخط اللي اخترته */
+    font-family: 'DM Sans', sans-serif; 
+    
+    /* يفضل يكون عريض جداً (Bold) وشبه اللوجو */
+    font-weight: 800; 
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    margin-left: auto;
+    
+    /* اللون يتغير حسب المود (أبيض في الدارك) */
+    color: #ffffff; 
+    text-transform: uppercase;
+  }
+
+  /* التغيير للايت مود (لو بتستخدم كلاس light) */
+  .container.light .brandTitle {
+    color: #5c59f2; /* اللون البنفسجي */
+  }
+}
+@media (max-width: 768px) {
+  
+  /* 1. تعديل مكان السايد بار */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    /* غيرنا دي من right لـ left */
+    left: -100%; 
+    right: auto; /* تأكيد إلغاء أي قيم سابقة للـ right */
+    
+    width: 240px;
+    height: 100vh;
+    background-color: #1a1a2e;
+    z-index: 2000;
+    padding: 15px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* الأنيميشن هيحصل من الشمال */
+    transition: left 0.3s ease-in-out; 
+    box-shadow: 10px 0 20px rgba(0,0,0,0.5); /* عكسنا اتجاه الظل */
+  }
+
+  /* 2. الكلاس المسؤول عن فتح المنيو */
+  .sidebarActive {
+    left: 0 !important; /* يظهر من الشمال */
+  }
+
+  /* 3. تعديل الهيدر عشان العنوان يفضل يمين وزرار المنيو يفضل شمال */
+  .topHeader {
+    display: flex;
+    align-items: center;
+    /* ده هيضمن إن المنيو يفضل شمال والعنوان يزق لليمين */
+    justify-content: flex-start; 
+    padding: 0 15px !important;
+  }
+
+  .brandTitle {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    /* الـ auto هنا هي اللي بتخلي العنوان يطير لآخر اليمين */
+    margin-left: auto; 
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+
+  /* 4. زرار القفل جوه السايد بار */
+  .closeMenuBtn {
+    display: block;
+    /* نخليه شمال أو يمين براحتك، بس الأفضل يفضل يمين السايد بار */
+    align-self: flex-end; 
+    font-size: 24px;
+    color: #5c59f2;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 768px) {
+  /* نستخدم :global عشان نوصل للكلاس اللي بره الموديول */
+  :global(.light-mode) .sidebar {
+    background-color: #ffffff !important; /* خلفية بيضاء */
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  :global(.light-mode) .brandTitle {
+    color: #5c59f2 !important; /* العنوان يقلب بنفسجي */
+  }
+
+  :global(.light-mode) .profileSection {
+    background: #f1f3f9 !important; /* لون رمادي فاتح جداً للكارت */
+    border: 1px solid #e0e4f0 !important;
+  }
+
+  :global(.light-mode) .userName {
+    color: #1a1a2e !important;
+  }
+
+  :global(.light-mode) .userStatus {
+    color: #28a745 !important;
+  }
+
+  /* الأيقونات والكلام في اللينكات غير النشطة */
+  :global(.light-mode) .link {
+    color: #444444 !important;
+  }
+
+  :global(.light-mode) .link .icon {
+    color: #5c59f2 !important; /* الأيقونات تبقى بنفسجي */
+  }
+
+  /* السيكشن تايتل */
+  :global(.light-mode) .sectionTitle {
+    color: #888888 !important;
+  }
+
+  /* زرار القفل */
+  :global(.light-mode) .closeMenuBtn {
+    color: #5c59f2 !important;
+  }
+
+  /* التوب هيدر الخارجي */
+  :global(.light-mode) .topHeader {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #eeeeee !important;
+  }
+}
+/* --- ألوان الموبايل فقط (Mobile Only) --- */
+@media (max-width: 768px) {
+  
+  /* الحالة الافتراضية للموبايل (Dark) موجودة عندك بالفعل */
+
+  /* حالة اللايت مود (Light Mode) */
+  .lightMode {
+    /* تغيير الخلفيات */
+    & .sidebar {
+      background-color: #ffffff !important;
+      box-shadow: 10px 0 20px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    & .topHeader {
+      background-color: #ffffff !important;
+      border-bottom: 1px solid #f0f0f0 !important;
+    }
+
+    /* تغيير النصوص */
+    & .brandTitle {
+      color: #5c59f2 !important; /* بنفسجي في اللايت مود */
+    }
+
+    & .userName {
+      color: #1a1a2e !important;
+    }
+
+    & .profileSection {
+      background: #f8f9fa !important;
+      border: 1px solid #e9ecef !important;
+    }
+
+    /* اللينكات والأيقونات */
+    & .link {
+      color: #555555 !important;
+    }
+
+    & .link svg, 
+    & .link [class*="icon"] {
+      color: #5c59f2 !important;
+    }
+
+    & .sectionTitle {
+      color: #999999 !important;
+    }
+
+    & .openMenuBtn,
+    & .closeMenuBtn {
+      color: #5c59f2 !important;
+    }
+
+    /* الطبقة الشفافة خلف المنيو */
+    & .overlay {
+      background: rgba(0, 0, 0, 0.2) !important;
+    }
+  }
+}
+/* أجمد تعديل للموبايل لايت مود */
+@media (max-width: 768px) {
+  
+  /* 1. السايد بار نفسه */
+  .lightSide {
+    background-color: #ffffff !important;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* 2. النصوص والأيقونات */
+  .lightSide .userName {
+    color: #1a1a2e !important;
+  }
+
+  .lightSide .link span {
+    color: #444444 !important;
+  }
+
+  .lightSide .icon {
+    color: #5c59f2 !important;
+  }
+
+  .lightSide .sectionTitle {
+    color: #999999 !important;
+  }
+
+  /* 3. كارت البروفايل الرمادي الخفيف */
+  .lightSide .profileSection {
+    background: #f8f9fa !important;
+    border: 1px solid #eeeeee !important;
+  }
+
+  /* 4. زر القفل X */
+  .lightSide .closeMenuBtn {
+    color: #5c59f2 !important;
+  }
+
+  /* 5. الهيدر في اللايت مود */
+  .lightMode .topHeader {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+  }
+
+  .lightMode .brandTitle {
+    color: #5c59f2 !important;
+  }
+}
+/* التعديل للموبايل فقط */
+@media (max-width: 768px) {
+    /* استهداف السايد بار نفسه */
+    .sidebar {
+        background-color: #1a1a2e !important; /* لون الخلفية الغامق */
+    }
+
+    /* تحويل كل النصوص والأيقونات للأبيض */
+    .sidebar :global(span), 
+    .sidebar :global(p), 
+    .sidebar :global(h1), 
+    .sidebar :global(h2), 
+    .sidebar :global(h3),
+    .sidebar :global(svg) {
+        color: #ffffff !important;
+    }
+
+    /* استهداف الروابط غير النشطة (عشان تبان أبيض) */
+    .link :global(span), 
+    .link :global(.icon) {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    /* الحفاظ على لون تابة الداش بورد النشطة (البنفسجي) */
+    .activeLink {
+        background-color: #9d4edd !important; /* اللون البنفسجي اللي في صورتك */
+        color: #ffffff !important;
+    }
+
+    .activeLink :global(span), 
+    .activeLink :global(.icon) {
+        color: #ffffff !important;
+    }
+
+    /* زرار القفل X */
+    .closeMenuBtn :global(svg) {
+        color: #ffffff !important;
+    }
+
+    /* البروفايل سكشن */
+    .profileSection {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+}
+@media (max-width: 768px) {
+  /* ... أكواد الموبايل اللي كتبناها قبل كدة ... */
+
+  /* التعديل السحري للبراند تايتل */
+  :global(.light-theme-active) .brandTitle {
+    color: #5c59f2 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+/* ده هيروح يدور على أي عنصر واخد كلاس فيه كلمة brandTitle جوه الـ container لما يكون لايت */
+[data-theme='light'] div[class*="brandTitle"] {
+    color: #5c59f2 !important;
+    opacity: 1 !important;
+}
+
+/* حل إضافي لو لسه معاند - استهداف مباشر بالـ Global */
+:global(.light-theme-active) [class*="brandTitle"] {
+    color: #5c59f2 !important;
+}
+
+@media (max-width: 768px) {
+    /* التأكد إن الهيدر نفسه خلفيته بيضاء في اللايت مود موبايل */
+    :global(.light-theme-active) .topHeader {
+        background-color: #ffffff !important;
+    }
+}
