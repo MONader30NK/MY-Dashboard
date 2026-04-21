@@ -30,15 +30,14 @@ const handleImageChange = async (e) => {
   }
 };
 const firebaseConfig = {
-  apiKey: "AIzaSyCfrMtjjnP0Z2bL_cTdj8B_FGqd447Z3X8",
-  authDomain: "dash-board-d5421.firebaseapp.com",
-  projectId: "dash-board-d5421",
-  storageBucket: "dash-board-d5421.firebasestorage.app",
-  messagingSenderId: "1080876740185",
-  appId: "1:1080876740185:web:734979161741d032424b48",
-  measurementId: "G-C1DM0HJNQZ"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
